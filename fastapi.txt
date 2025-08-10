@@ -7,3 +7,6 @@ Key:
     - Few bugs
     - Quick & easy
     - Robust
+
+It needs uvicorn. In AI, new dependencies.
+pip is used to install and update packages, everything in virtual env.
