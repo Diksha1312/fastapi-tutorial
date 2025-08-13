@@ -1,0 +1,6 @@
+- TODOS portal
+- New:
+    - Full SQL Database
+    - Authentication
+    - Authorization
+    - Hashing Passwords
