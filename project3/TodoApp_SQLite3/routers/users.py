@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Path
+from fastapi import APIRouter, Depends, HTTPException, Path, dependencies
 from pydantic import BaseModel, Field
 from models import Todos, Users
 from database import SessionLocal
@@ -26,6 +26,9 @@ class UserVerification(BaseModel):
     password: str
     new_password: str = Field(min_length=6)
 
+class UserContactUpdate(BaseModel):
+    update_phone_number: str
+
 @router.get("/", status_code=status.HTTP_200_OK)
 def get_all_info(user: user_dependency, db: db_dependency):
     if user is None:
@@ -47,7 +50,16 @@ def change_password(user: user_dependency, db: db_dependency, user_verification:
     db.add(user_model)
     db.commit()
     
+@router.put("/phone-number", status_code=status.HTTP_204_NO_CONTENT)
+def update_phone_number(user: user_dependency, db: db_dependency, user_contact_update: UserContactUpdate):
+    if user is None:
+        raise HTTPException(status_code=401, detail="Authentication Failed")
     
+    user_model = db.query(Users).filter(Users.id == user.get('id')).first()
+
+    user_model.phone_number = user_contact_update.update_phone_number
+    db.add(user_model)
+    db.commit()
 
 
 """Assignment
