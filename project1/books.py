@@ -31,7 +31,7 @@ def read_category_by_query(category: str):
             books_to_return.append(book)
     return books_to_return
 
-#moved this end point here to avoid conflict with the one below - ORDER MATTERS!
+# moved this end point here to avoid conflict with the one below - ORDER MATTERS!
 @app.get("/books/byauthor/")
 def read_books_by_author_query(author: str):
     books_to_return = []
@@ -40,6 +40,7 @@ def read_books_by_author_query(author: str):
             books_to_return.append(book)
     return books_to_return
 
+# path and query parameters together
 @app.get('/books/{author}/')
 def read_author_category_by_query(author: str, category: str):
     books_to_return = []

@@ -1,4 +1,4 @@
-- get, post, put, delete requests
+- get, post, put, delete requests - continued
 - new: 
     - Data validation
     - Exception Handling

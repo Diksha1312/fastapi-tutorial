@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Path, Query, HTTPException
 from list_of_books import *
-from starlette import status # we can dictate exactly what status response needs to be returned
+from starlette import status # we can dictate exactly what status response needs to be returned after each successful api call
 
 app = FastAPI()
 
@@ -27,7 +27,7 @@ def read_books_by_rating(book_rating: int = Query(gt=0, lt=6)): # order does not
 
 # fetch books by published date using query parameter
 @app.get('/books/publish/', status_code=status.HTTP_200_OK)
-def read_books_published_date(published_date: int = Query(gt=1999, lt=2025)):
+def read_books_by_published_date(published_date: int = Query(gt=1999, lt=2025)):
     books_to_return = []
     for book in BOOKS:
         if book.published_date == published_date:
@@ -41,7 +41,7 @@ def create_book(book_request=Body()): # using body doesnt add any kind of data v
 @app.post("/create-book", status_code=status.HTTP_201_CREATED)
 def create_book(book_request: BookRequest):
     # Validate the book request using Pydantic model
-    new_book = Book(**book_request.dict())
+    new_book = Book(**book_request.model_dump()) # ** operator to unpack the dictionary into keyword arguments
     BOOKS.append(find_book_id(new_book))
 
 @app.put("/books/update-book")
@@ -55,7 +55,7 @@ def update_book(book: BookRequest, status_code=status.HTTP_204_NO_CONTENT):
         raise HTTPException(status_code=404, detail="Item not found")
 
 @app.delete('/books/{book_id}')
-def delete_books(book_id: int = Path(gt=0), status_code=status.HTTP_204_NO_CONTENT):
+def delete_book(book_id: int = Path(gt=0), status_code=status.HTTP_204_NO_CONTENT):
     book_changed=False
     for i in range(len(BOOKS)):
         if BOOKS[i].id == book_id:

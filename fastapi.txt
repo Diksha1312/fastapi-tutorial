@@ -1,12 +1,15 @@
 FastAPI is a Python web-framework for building modern APIs.
-    - Fast (Performance)
-    - Fast (Dev)
-FastAPI makes it eaasy to create the backend communication that has embedded security, lightweight installation and can be running within mins.
+    - Fast (Performance) - included data validation, serialisation, documentation
+    - Fast (Dev) - with few lines of code, easy integration with frontend
+FastAPI makes it easy to create the backend communication that has embedded security, lightweight installation and can be running within mins.
 
 Key:
     - Few bugs
     - Quick & easy
     - Robust
+    - Standards (OpenAPI standards and json schema)
 
 It needs uvicorn. In AI, new dependencies.
 pip is used to install and update packages, everything in virtual env.
+
+Official documentation: https://fastapi.tiangolo.com

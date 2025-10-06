@@ -1,14 +1,15 @@
 Creating and enhancing books to learn the basics of FastAPI
-Also be using CRUD operations
+Also be using CRUD operations - create, read, update and delete
 
-*Request and Response*
-- Web page requests using http requests to fastapi server.
-- fastapi has swagger ui implemented withing the application already., this has list of all swagger methods which fastapi can call.
+# Request and Response
+- Web page requests (crud) using http requests to fastapi server.
+- fastapi has swagger ui implemented within the application already., this has list of all swagger methods which fastapi can call.
 - create is post, read is get, update is put, delete is delete request method
 
 api-endpoint is the path for the API
 
 # run fast api
+uvicorn is a web server used to access fastapi endpoints.
 uvicorn <file_name>:<app> --reload
 Ex - uvicorn books:app --reload
 
@@ -22,14 +23,14 @@ async is optional for fastapi
 - You can also use path parameters to filter resources, like getting all books by a specific author.
 - You can also use path parameters to get a specific book by its year.
 For example, if you want to get all books by a specific author, you can use a path parameter like this: /books/author/{author_name}.
-- Order matters with Path params
+- Order matters with Path params - have APIs in chronological order (small to big)
 
 # Query Parameters
 
 - Query Parameters are request parameters that are appended to the URL after a question mark (?).
 - They are used to filter or modify the response of an API endpoint. In this case, we are using a query parameter to filter books by their title.
 - For example, if you want to get details of a specific book, you can use the URL:
-http://localhost:8000/books?title=Book%20One
+http://localhost:8000/books?title=Book%20One (%20 -> space)
 This will return the details of "Book One" if it exists in the BOOKS list.
 
 # Post Request

@@ -22,7 +22,7 @@ class BookRequest(BaseModel): # Pydantic model for book request validation
     title: str = Field(min_length=3)
     author: str = Field(min_length=1)
     description: str = Field(min_length=1, max_length=100)
-    rating: int = Field(gt=0, lt=6)
+    rating: int = Field(gt=0, lt=6) # between 1 and 5
     published_date: int = Field(gt=1999, lt=2025)
     # Pydantic model configuration for Swagger documentation
     model_config = {
@@ -48,7 +48,3 @@ BOOKS = [
 def find_book_id(book: Book): # Function to find the next available ID for a new book
     book.id = 1 if len(BOOKS) == 0 else BOOKS[-1].id + 1
     return book
-
-"""
-
-"""
