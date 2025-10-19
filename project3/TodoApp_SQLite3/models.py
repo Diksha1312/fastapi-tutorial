@@ -17,6 +17,7 @@ class Users(Base):
     is_active = Column(Boolean, default=True)
     role = Column(String)
     phone_number = Column(String)
+    # about_me = Column(String)
 
 class Todos(Base):
     __tablename__ = 'todos' # name of the table in the database
