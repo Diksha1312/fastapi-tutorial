@@ -2,5 +2,6 @@
 - New:
     - Full SQL Database
     - Authentication
-    - Authorization
+    - Authorization - jwt
     - Hashing Passwords
+    - Alembic migrations

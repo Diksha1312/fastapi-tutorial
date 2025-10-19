@@ -16,7 +16,7 @@ def get_db():
         yield db
     finally:
         db.close()
-
+# session manages persistence ops for ORM-mapped objects, Depends - used to declare fastapi dependency
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 

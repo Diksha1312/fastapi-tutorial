@@ -20,3 +20,5 @@ __pycache__/
 # Mac OS junk
 .DS_Store
 EOF
+
+project3/Test/*

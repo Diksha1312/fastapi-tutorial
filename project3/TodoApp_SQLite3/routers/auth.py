@@ -17,7 +17,7 @@ SECRET_KEY = '39e9459e5e3118ff79648cc62216aa642e083cd7ec0993aa849c1bf72bcb13fb' 
 ALGORITHM = 'HS256' # typically used
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
-oauth2_bearer = OAuth2PasswordBearer(tokenUrl='auth/token')
+oauth2_bearer = OAuth2PasswordBearer(tokenUrl='auth/token') # this param contains the url that client sends to fastapi app 
 
 # validation before creating user
 class CreateUserRequest(BaseModel):

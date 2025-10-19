@@ -28,10 +28,12 @@ class TodoRequest(BaseModel):
 
 @router.get('/', status_code=status.HTTP_200_OK)
 def read_all(user: user_dependency, db: db_dependency): # this function relies on db, so Depends called Dependency Injection
-   
    if user is None:
         raise HTTPException(status_code=401, detail="Authentication Failed")
-   return db.query(Todos).filter(Todos.owner_id == user.get('id')).all()    
+   todo_model = db.query(Todos).filter(Todos.owner_id == user.get('id')).all()    
+   if not todo_model:
+       raise HTTPException(status_code=404, detail="No todos found")
+   return todo_model
 
 
 @router.get("/todo/{todo_id}", status_code=status.HTTP_200_OK)
