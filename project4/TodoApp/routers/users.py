@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
-from models import Users
-from database import SessionLocal
+from ..models import Users
+from ..database import SessionLocal
 from typing import Annotated
 from sqlalchemy.orm import Session
 from starlette import status
@@ -33,7 +33,7 @@ class UserContactUpdate(BaseModel):
 def get_all_info(user: user_dependency, db: db_dependency):
     if user is None:
         raise HTTPException(status_code=401, detail="Authentication Failed")
-    data_model = db.query(Users).filter(Users.id == user.get('id')).all()
+    data_model = db.query(Users).filter(Users.id == user.get('id')).first()
     return data_model
 
 @router.put("/password", status_code=status.HTTP_204_NO_CONTENT)
